@@ -1,5 +1,9 @@
 import React from "react"
+import { Quiz } from "./components/Quiz"
+import { data } from "./data"
 
 export const App = () => {
-    return <div className='font-thin'>App</div>
+    const quiz = data[0].quizzes![0]
+
+    return <Quiz quiz={quiz} />
 }

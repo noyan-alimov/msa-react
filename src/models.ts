@@ -11,6 +11,13 @@ export interface Quiz {
 	questions?: Question[];
 }
 
+export const createQuizModel = () => {
+	return {
+		id: '',
+		name: '',
+	};
+};
+
 export interface Question {
 	id: string;
 	question: string;

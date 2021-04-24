@@ -9,12 +9,15 @@ import {
 	updateQuiz,
 } from '../firebase/db/quiz';
 import { createUser, getUser } from '../firebase/db/user';
-import { Quiz } from '../models';
+import { createQuizModel, Quiz } from '../models';
 
 export class AppStore {
 	userId: string | undefined = undefined;
+
 	quizzes: Quiz[] = [];
 	quizzesErrorMsg: string = '';
+
+	selectedQuiz: Quiz = createQuizModel();
 
 	constructor() {
 		makeObservable(this, {
@@ -24,6 +27,9 @@ export class AppStore {
 			quizzes: observable,
 			quizzesErrorMsg: observable,
 			fetchQuizzes: action,
+
+			selectedQuiz: observable,
+			setSelectedQuiz: action,
 		});
 	}
 
@@ -31,11 +37,11 @@ export class AppStore {
 		this.userId = userId;
 	}
 
-	async signUpUser(
-		displayName: string,
-		email: string,
-		password: string
-	): Promise<AuthResponse> {
+	setSelectedQuiz(quizId: string) {
+		this.selectedQuiz = this.quizzes.find(quiz => quiz.id === quizId);
+	}
+
+	async signUpUser(email: string, password: string): Promise<AuthResponse> {
 		return await registerUser(email, password);
 	}
 

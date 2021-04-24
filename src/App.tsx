@@ -1,8 +1,7 @@
 import { observer } from "mobx-react-lite"
 import React, { useContext, useEffect } from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { Quiz } from "./components/Quiz"
-import { data } from "./data"
+import { Quiz } from "./pages/Quiz"
 import { auth } from "./firebase/config"
 import { CreateQuiz } from "./pages/CreateQuiz"
 import { Login } from "./pages/Login"
@@ -17,6 +16,7 @@ export const App = observer(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 appStore.setUserId(user.uid)
+                console.log('signed in')
             } else {
                 console.log('Signed out')
             }
@@ -31,6 +31,7 @@ export const App = observer(() => {
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={Quizzes} />
+                <Route exact path='/quiz' component={Quiz} />
                 <Route exact path='/createQuiz' component={CreateQuiz} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/register' component={Register} />

@@ -1,6 +1,6 @@
 import React from 'react'
 import { User as UserModel } from '../models';
-import { Quiz } from './Quiz';
+import { Quiz } from '../pages/Quiz';
 
 interface UserProps {
     user: UserModel

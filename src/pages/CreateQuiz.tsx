@@ -33,7 +33,7 @@ export const CreateQuiz = observer((props: CreateQuizProps) => {
         }
 
         if (res.success) {
-            history.push('/login')
+            history.push('/')
         }
     }
 

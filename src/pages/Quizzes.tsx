@@ -11,12 +11,12 @@ export const Quizzes = observer(() => {
     const history = useHistory()
 
     const redirectToQuiz = (quizId: string) => {
-        appStore.setSelectedQuiz(quizId)
+        appStore.quizStore.setSelectedQuiz(quizId)
         history.push('/quiz')
     }
 
     useEffect(() => {
-        appStore.fetchQuizzes()
+        appStore.quizStore.fetchQuizzes(appStore.userId)
     }, [appStore.userId])
 
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
@@ -30,8 +30,8 @@ export const Quizzes = observer(() => {
     }
 
     const deleteQuiz = async (quizId: string) => {
-        await appStore.deleteQuizApi(quizId)
-        await appStore.fetchQuizzes()
+        await appStore.quizStore.deleteQuizApi(appStore.userId, quizId)
+        await appStore.quizStore.fetchQuizzes(appStore.userId)
         closeModal()
     }
 
@@ -46,7 +46,7 @@ export const Quizzes = observer(() => {
                 </tr>
             </thead>
             <tbody>
-                {appStore.quizzes.map(quiz => (
+                {appStore.quizStore.quizzes.map(quiz => (
                     <tr key={quiz.id}>
                         <td className='border text-center text-green-500 text-lg py-4'>{quiz.name}</td>
                         <td className='border'>

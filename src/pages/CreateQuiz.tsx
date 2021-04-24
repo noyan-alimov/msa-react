@@ -6,11 +6,7 @@ import { Button } from "../components/Button";
 import { appStoreContext } from "../store/AppStore";
 import { useHistory } from "react-router";
 
-interface CreateQuizProps {
-
-}
-
-export const CreateQuiz = observer((props: CreateQuizProps) => {
+export const CreateQuiz = observer(() => {
     const appStore = useContext(appStoreContext)
     const history = useHistory()
 
@@ -24,7 +20,7 @@ export const CreateQuiz = observer((props: CreateQuizProps) => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const res = await appStore.createQuizApi(name)
+        const res = await appStore.quizStore.createQuizApi(appStore.userId, name)
         if (!res) return
 
         if (!res.success && res.errorMessage) {

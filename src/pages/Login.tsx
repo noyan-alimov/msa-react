@@ -27,7 +27,7 @@ export const Login = observer(() => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const res = await appStore.signInUser(email, password)
+        const res = await appStore.userStore.signInUser(email, password)
         if (res.success) {
             history.push('/')
             return

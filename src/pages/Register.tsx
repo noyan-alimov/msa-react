@@ -31,7 +31,7 @@ export const Register = observer(() => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const res = await appStore.signUpUser(email, password)
+        const res = await appStore.signUpUser(name, email, password)
         if (res.success) {
             history.push('/')
             return

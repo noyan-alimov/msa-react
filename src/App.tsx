@@ -8,6 +8,7 @@ import { Login } from "./pages/Login"
 import { Quizzes } from "./pages/Quizzes"
 import { Register } from "./pages/Register"
 import { appStoreContext } from "./store/AppStore"
+import { Header } from './components/Header'
 
 export const App = observer(() => {
     const appStore = useContext(appStoreContext)
@@ -29,6 +30,9 @@ export const App = observer(() => {
 
     return (
         <BrowserRouter>
+            {appStore.userId && (
+                <Header />
+            )}
             <Switch>
                 <Route exact path='/' component={Quizzes} />
                 <Route exact path='/quiz' component={Quiz} />

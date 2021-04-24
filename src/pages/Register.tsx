@@ -47,12 +47,12 @@ export const Register = observer(() => {
     return (
         <FullScreenCenter>
             <form onSubmit={onSubmit} className='flex flex-col w-full md:w-80'>
-                <div className='mb-6 text-center text-blue-500 font-bold text-2xl'>Sign Up</div>
+                <div className='mb-6 text-center text-blue-500 font-bold text-2xl'>Register</div>
                 <Input value={name} onChange={changeName} type='text' placeholder='Name' />
                 <Input value={email} onChange={changeEmail} type='email' placeholder='Email' />
                 <Input value={password} onChange={changePassword} type='password' placeholder='Password' />
-                <Link to='/login' className='my-2 hover:text-blue-500'>Already have an account? Sign In now</Link>
-                <Button text='Sign Up' />
+                <Link to='/login' className='my-2 hover:text-blue-500'>Already have an account? Login now</Link>
+                <Button text='Register' />
                 {errorMessage && (
                     <div className='mt-2 text-center text-red-500 font-light text-lg'>{errorMessage}</div>
                 )}

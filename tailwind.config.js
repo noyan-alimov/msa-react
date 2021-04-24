@@ -12,6 +12,9 @@ module.exports = {
 			width: {
 				'half-screen': '50vw',
 			},
+			height: {
+				'80vh': '80vh',
+			},
 		},
 	},
 	variants: {

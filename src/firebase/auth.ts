@@ -28,3 +28,12 @@ export const loginUser = async (
 		return { success: false, errorMessage: err.message };
 	}
 };
+
+export const logoutUser = async (): Promise<AuthResponse> => {
+	try {
+		await auth.signOut();
+		return { success: true };
+	} catch (err) {
+		return { success: false, errorMessage: err.message };
+	}
+};

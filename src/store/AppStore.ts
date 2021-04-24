@@ -16,7 +16,7 @@ export class AppStore {
 		});
 	}
 
-	setUserId(userId: string) {
+	setUserId(userId: string | undefined) {
 		this.userId = userId;
 	}
 }

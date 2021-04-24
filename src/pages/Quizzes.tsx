@@ -16,6 +16,11 @@ export const Quizzes = observer(() => {
     }
 
     useEffect(() => {
+        if (!appStore.userId) {
+            history.push('/login')
+            return
+        }
+
         appStore.quizStore.fetchQuizzes(appStore.userId)
     }, [appStore.userId])
 

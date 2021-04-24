@@ -1,4 +1,9 @@
-import { AuthResponse, registerUser, loginUser } from '../firebase/auth';
+import {
+	AuthResponse,
+	registerUser,
+	loginUser,
+	logoutUser,
+} from '../firebase/auth';
 import { createUser, getUser } from '../firebase/db/user';
 
 export class UserStore {
@@ -8,6 +13,10 @@ export class UserStore {
 
 	async signInUser(email: string, password: string): Promise<AuthResponse> {
 		return await loginUser(email, password);
+	}
+
+	async signOutUser(): Promise<AuthResponse> {
+		return await logoutUser();
 	}
 
 	async createUserApi(userId: string, displayName: string, email: string) {

@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Answer as AnswerModel } from '../models';
 
@@ -5,7 +6,7 @@ interface AnswerProps {
     answer: AnswerModel
 }
 
-export const Answer = (props: AnswerProps) => {
+export const Answer = observer((props: AnswerProps) => {
     const { answer } = props
 
     return (
@@ -14,4 +15,4 @@ export const Answer = (props: AnswerProps) => {
             <div className='text-xl text-green-800'>{answer.isCorrect ? 'Correct' : 'Incorrect'}</div>
         </div>
     );
-}
+})

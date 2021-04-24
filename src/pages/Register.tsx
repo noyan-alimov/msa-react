@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { appStoreContext } from '../store/AppStore';
-import { FullScreenContainer } from '../components/FullScreenContainer';
+import { FullScreenCenter } from '../components/FullScreenCenter';
 
 export const Register = observer(() => {
     const appStore = useContext(appStoreContext)
@@ -45,7 +45,7 @@ export const Register = observer(() => {
     }
 
     return (
-        <FullScreenContainer>
+        <FullScreenCenter>
             <form onSubmit={onSubmit} className='flex flex-col w-full md:w-80'>
                 <div className='mb-6 text-center text-blue-500 font-bold text-2xl'>Sign Up</div>
                 <Input value={name} onChange={changeName} type='text' placeholder='Name' />
@@ -57,6 +57,6 @@ export const Register = observer(() => {
                     <div className='mt-2 text-center text-red-500 font-light text-lg'>{errorMessage}</div>
                 )}
             </form>
-        </FullScreenContainer>
+        </FullScreenCenter>
     );
 })

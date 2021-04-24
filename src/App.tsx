@@ -6,6 +6,7 @@ import { data } from "./data"
 import { auth } from "./firebase/config"
 import { CreateQuiz } from "./pages/CreateQuiz"
 import { Login } from "./pages/Login"
+import { Quizzes } from "./pages/Quizzes"
 import { Register } from "./pages/Register"
 import { appStoreContext } from "./store/AppStore"
 
@@ -29,7 +30,8 @@ export const App = observer(() => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' component={CreateQuiz} />
+                <Route exact path='/' component={Quizzes} />
+                <Route exact path='/createQuiz' component={CreateQuiz} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/register' component={Register} />
             </Switch>

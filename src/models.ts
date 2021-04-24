@@ -8,7 +8,7 @@ export interface User {
 export interface Quiz {
 	id: string;
 	name: string;
-	questions: Question[];
+	questions?: Question[];
 }
 
 export interface Question {

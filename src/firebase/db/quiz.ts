@@ -1,3 +1,4 @@
+import { Quiz } from '../../models';
 import { db } from '../config';
 import { CreateUpdateDeleteDataResponse } from './models';
 
@@ -50,5 +51,25 @@ export const deleteQuiz = async (
 		return { success: true };
 	} catch (err) {
 		return { success: false, errorMessage: err.message };
+	}
+};
+
+export const getQuizzesByUserId = async (
+	userId: string
+): Promise<Quiz[] | string> => {
+	try {
+		const querySnapshot = await db
+			.collection('users')
+			.doc(userId)
+			.collection('quizzes')
+			.get();
+		let quizzes: Quiz[] = [];
+		querySnapshot.forEach(doc => {
+			const quiz = { id: doc.id, ...doc.data() } as Quiz;
+			quizzes.push(quiz);
+		});
+		return quizzes;
+	} catch (err) {
+		return err.message;
 	}
 };

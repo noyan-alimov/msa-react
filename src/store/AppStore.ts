@@ -1,17 +1,29 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { createContext } from 'react';
 import { AuthResponse, loginUser, registerUser } from '../firebase/auth';
 import { CreateUpdateDeleteDataResponse } from '../firebase/db/models';
-import { createQuiz, deleteQuiz, updateQuiz } from '../firebase/db/quiz';
+import {
+	createQuiz,
+	deleteQuiz,
+	getQuizzesByUserId,
+	updateQuiz,
+} from '../firebase/db/quiz';
 import { createUser, getUser } from '../firebase/db/user';
+import { Quiz } from '../models';
 
 export class AppStore {
 	userId: string | undefined = undefined;
+	quizzes: Quiz[] = [];
+	quizzesErrorMsg: string = '';
 
 	constructor() {
 		makeObservable(this, {
 			userId: observable,
 			setUserId: action,
+
+			quizzes: observable,
+			quizzesErrorMsg: observable,
+			fetchQuizzes: action,
 		});
 	}
 
@@ -42,7 +54,6 @@ export class AppStore {
 		if (!this.userId) {
 			return;
 		}
-		console.log(this.userId);
 
 		await getUser(this.userId);
 	}
@@ -71,6 +82,23 @@ export class AppStore {
 		}
 
 		return await deleteQuiz(this.userId, id);
+	}
+
+	async fetchQuizzes() {
+		if (!this.userId) {
+			return;
+		}
+
+		const quizzes = await getQuizzesByUserId(this.userId);
+
+		runInAction(() => {
+			if (typeof quizzes === 'string') {
+				this.quizzesErrorMsg = quizzes;
+				return;
+			}
+
+			this.quizzes = quizzes;
+		});
 	}
 }
 

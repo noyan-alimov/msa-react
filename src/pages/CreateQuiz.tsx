@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { FullScreenContainer } from "../components/FullScreenContainer";
+import { FullScreenCenter } from "../components/FullScreenCenter";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { appStoreContext } from "../store/AppStore";
@@ -38,7 +38,7 @@ export const CreateQuiz = observer((props: CreateQuizProps) => {
     }
 
     return (
-        <FullScreenContainer>
+        <FullScreenCenter>
             <form onSubmit={onSubmit} className='flex flex-col w-full md:w-80'>
                 <div className='mb-6 text-center text-blue-500 font-bold text-2xl'>Create Quiz</div>
                 <Input
@@ -52,6 +52,6 @@ export const CreateQuiz = observer((props: CreateQuizProps) => {
                     <div className='mt-2 text-center text-red-500 font-light text-lg'>{errorMessage}</div>
                 )}
             </form>
-        </FullScreenContainer>
+        </FullScreenCenter>
     )
 })

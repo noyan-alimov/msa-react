@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Question as QuestionModel } from '../models';
 import { Answer } from "./Answer";
@@ -8,7 +9,7 @@ interface QuestionProps {
     question: QuestionModel
 }
 
-export const Question = (props: QuestionProps) => {
+export const Question = observer((props: QuestionProps) => {
     const { question } = props
 
     return (
@@ -30,5 +31,5 @@ export const Question = (props: QuestionProps) => {
                 </div>
             </div>
         </div>
-    );
-}
+    )
+})

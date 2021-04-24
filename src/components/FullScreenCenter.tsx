@@ -1,10 +1,10 @@
 import React from "react"
 
-interface FullScreenContainerProps {
+interface FullScreenCenterProps {
     children: React.ReactNode
 }
 
-export const FullScreenContainer = (props: FullScreenContainerProps) => {
+export const FullScreenCenter = (props: FullScreenCenterProps) => {
     const { children } = props
 
     return (

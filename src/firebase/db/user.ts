@@ -1,22 +1,14 @@
+import { User } from '../../models';
 import { db } from '../config';
-
-export interface CreateUserParams {
-	displayName: string;
-	email: string;
-}
-
-export interface CreateDataResponse {
-	success: boolean;
-	errorMessage?: string;
-}
+import { CreateUserParams, CreateUpdateDeleteDataResponse } from './models';
 
 export const createUser = async (
 	params: CreateUserParams
-): Promise<CreateDataResponse> => {
-	const { displayName, email } = params;
+): Promise<CreateUpdateDeleteDataResponse> => {
+	const { id, displayName, email } = params;
 
 	try {
-		await db.collection('users').doc().set({
+		await db.collection('users').doc(id).set({
 			displayName,
 			email,
 		});
@@ -28,5 +20,17 @@ export const createUser = async (
 			success: false,
 			errorMessage: err.message,
 		};
+	}
+};
+
+export const getUser = async (id: string): Promise<User | string> => {
+	try {
+		const doc = await db.collection('users').doc(id).get();
+		return {
+			uid: doc.id,
+			...doc.data(),
+		} as User;
+	} catch (err) {
+		return err.message;
 	}
 };

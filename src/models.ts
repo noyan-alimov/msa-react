@@ -1,7 +1,8 @@
 export interface User {
-	id: string;
-	name: string;
-	quizzes: Quiz[];
+	uid: string;
+	displayName: string;
+	email: string;
+	quizzes?: Quiz[];
 }
 
 export interface Quiz {

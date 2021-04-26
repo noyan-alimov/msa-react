@@ -18,6 +18,7 @@ export const createQuestion = async (
 			.set({
 				question,
 			});
+		return { success: true };
 	} catch (err) {
 		return {
 			success: false,
@@ -43,6 +44,7 @@ export const updateQuestion = async (
 			.update({
 				question,
 			});
+		return { success: true };
 	} catch (err) {
 		return {
 			success: false,
@@ -65,6 +67,7 @@ export const deleteQuestion = async (
 			.collection('questions')
 			.doc(questionId)
 			.delete();
+		return { success: true };
 	} catch (err) {
 		return {
 			success: false,
